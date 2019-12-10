@@ -1,7 +1,8 @@
-FROM node:7
+# use a node base image
+FROM node:7-onbuild
 
+# set maintainer
 LABEL maintainer "camwalkuk@gmail.com"
 
-EXPOSE 8080
-
-CMD node server.js
+# tell docker what port to expose
+EXPOSE 8000
