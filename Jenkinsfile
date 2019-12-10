@@ -16,9 +16,8 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('https://hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+        docker.withRegistry('', 'docker-hub-credentials') {
+            app.push(camwalk/coursework:latest)
         }
     }
 }
