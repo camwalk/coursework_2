@@ -16,8 +16,8 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('', 'docker-hub-credentials') {
-            app.push(camwalk/coursework)
+        docker.withDockerRegistry(credentialsId: "docker-hub-credentials", url: "") {
+            app.push(latest)
         }
     }
 }
