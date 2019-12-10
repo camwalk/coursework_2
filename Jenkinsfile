@@ -6,7 +6,7 @@ node {
     }
 
     stage('Build image') {
-        app = docker.build("coursework")
+        app = docker.build("camwalk/coursework")
     }
 
     stage('Test image') {
