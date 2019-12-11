@@ -10,10 +10,6 @@ node {
     }
 
     stage('Sonarqube') {
-    environment {
-        scannerHome = tool 'SonarQubeScanner'
-    }
-    steps {
         withSonarQubeEnv('sonarqube') {
             sh "${scannerHome}/bin/sonar-scanner"
         }
@@ -21,7 +17,6 @@ node {
             waitForQualityGate abortPipeline: true
         }
     }
-	}
 
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com/library/camwalk', 'docker-hub-credentials') {
