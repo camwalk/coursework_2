@@ -1,6 +1,6 @@
 node {
     def app
-    /*test comment 1 */
+    /*test comment */
     stage('Clone repository') {
         checkout scm
     }
