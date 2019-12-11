@@ -5,4 +5,4 @@ FROM node:7-onbuild
 LABEL maintainer "camwalkuk@gmail.com"
 
 # tell docker what port to expose
-EXPOSE 8000
+EXPOSE 8080
