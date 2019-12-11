@@ -9,17 +9,19 @@ node {
         app = docker.build("camwalk/coursework")
     }
 
-    stage('Test image') {
-            environment {
-        	scannerHome = tool 'SonarQubeScanner'
-    	    }
-        	withSonarQubeEnv('sonarqube') {
-        	    	sh "${scannerHome}/bin/sonar-scanner"
-        	}
-        	timeout(time: 10, unit: 'MINUTES') {
-            		waitForQualityGate abortPipeline: true
-        	}
+    stage('Sonarqube') {
+    environment {
+        scannerHome = tool 'SonarQubeScanner'
     }
+    steps {
+        withSonarQubeEnv('sonarqube') {
+            sh "${scannerHome}/bin/sonar-scanner"
+        }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
+    }
+	}
 
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com/library/camwalk', 'docker-hub-credentials') {
